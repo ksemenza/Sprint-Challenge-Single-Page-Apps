@@ -6,17 +6,20 @@ const CardDiv = styled.div`
   border: 2px solid black;
   border-radius: 4px;
   box-shadow: 3px 5px 3px 3px #888888;
-  font-family: 'Gaegu', cursive;
   margin-bottom: 2rem;
   h2 {
     background: #0CB0C1;
     margin: 0;
     padding: 1rem;
     text-align: center;
+    font-family: 'Architects Daughter', cursive;
+
   }
   h3 {
     padding-left: 1rem;
     line-height: 1.1rem;
+    font-family: 'Architects Daughter', cursive;
+
   }
 `;
 

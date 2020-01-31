@@ -34,6 +34,16 @@ export default function EpisodeList() {
     const [searchResultsEsp, setsearchResultsEsp] = useState([]);  
     // const [episodeCharacter, setEpisodeCharacter]
 
+    useEffect(()=> {
+        axios.get(`https://rickandmortyapi.com/api/character/`)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => {
+            console.error(err); 
+        })
+    })
+
     useEffect(() => {
         axios.get(`https://rickandmortyapi.com/api/episode/`)
           .then(res => {

@@ -15,6 +15,7 @@ export default function Header() {
   width:100%;
   color:#0CB0C1;
   background: black;
+  font-family: 'Architects Daughter', cursive;
 
   a {
    text-decoration:none;

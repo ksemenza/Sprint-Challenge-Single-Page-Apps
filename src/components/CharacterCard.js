@@ -12,10 +12,14 @@ const CardWrap = styled.div`
     margin: 0;
     padding: 1rem;
     text-align: center;
+    font-family: 'Architects Daughter', cursive;
+
   }
   h3 {
     padding-left: 1rem;
     line-height: 1.1rem;
+    font-family: 'Architects Daughter', cursive;
+
   }
 `
 const ImgCta = styled.div`

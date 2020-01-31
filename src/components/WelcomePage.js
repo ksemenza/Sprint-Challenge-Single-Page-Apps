@@ -4,9 +4,12 @@ import styled from "styled-components";
 const MainWrap = styled.section `
 display:flex;
 justify-content:center;
+font-family: 'Architects Daughter', cursive;
+font-size:2.2rem;
+padding-bottom:2.5rem;
 
 img {
-  margin-left:0.5rem;
+  margin-left:7.5rem;
   margin-top:0.5rem;
   width:25rem;
   padding:2.5rem;
