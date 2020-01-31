@@ -47,7 +47,7 @@ export default function LocationsList() {
       }, [searchTermLoc]);
 
       const handleChange = e => {
-        searchTermLoc(e.target.value)
+        setSearchTermLoc(e.target.value)
       }
     
 
