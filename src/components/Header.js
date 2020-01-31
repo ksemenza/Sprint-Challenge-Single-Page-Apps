@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Route } from 'react-router-dom';
 import WelcomePage from './WelcomePage';
 import CharacterList from './CharacterList'
+import LocationList from './LocationsList'
 
 import styled from 'styled-components'
 export default function Header() {
@@ -52,6 +53,7 @@ export default function Header() {
     </HeaderWrap>
     <Route exact path='/' component={WelcomePage}/>
     <Route path='/characters' component={CharacterList}/>
+    <Route path='/location' component={LocationList}/>
 </div>
 
   );

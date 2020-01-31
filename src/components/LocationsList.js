@@ -1,4 +1,71 @@
-
 import React, { useEffect, useState } from "react";
+import LocationCard from './LocationCard';
+import SearchForm from './SearchForm';
+import styled from 'styled-components';
+import axios from 'axios';
 
-export default function LocationsList() {}
+const CardsWrap = styled.div `
+display: flex;
+flex-flow: row wrap;
+justify-content: space-between;
+align-items: stretch;
+justify-items: center;
+`
+const SearchWrap = styled.div `
+padding:1.5rem;
+display:flex;
+justify-content:center;
+
+input {
+  padding-left:1.5rem;
+  padding-right:1.5rem;
+  padding-top:0.5rem;
+  padding-bottom:0.5rem;
+  text-align: center;
+  border: 1px dashed lime;
+}
+
+`
+
+
+export default function LocationsList() {
+
+    const [searchTermLoc, setSearchTermLoc] = useState('');
+    const [searchResultsLoc, setSearchResultsLoc] = useState([]);  
+
+    useEffect(() => {
+        axios.get(`https://rickandmortyapi.com/api/location/`)
+          .then(res => {
+            console.log(res.data.results);
+            const searchQuery = res.data.results.filter(location => location.name.toLowerCase().includes(searchTermLoc.toLowerCase()));
+            setSearchResultsLoc(searchQuery);
+          })
+          .catch(err => {
+            console.error('loc data', err); 
+          })
+      
+      }, [searchTermLoc]);
+
+      const handleChange = e => {
+        searchTermLoc(e.target.value)
+      }
+    
+
+      return (
+        <section className="character-list">
+       <SearchWrap>
+    <SearchForm handleChange={handleChange} searchTerm={searchTermLoc}/>
+    </SearchWrap>
+  <CardsWrap>
+      {searchResultsLoc.map(location => {
+        return <LocationCard location={location} key={location.key} name={location.name} type={location.type} dimension={location.dimension} created={location.created} residents={location.residents}/>
+      })}
+      </CardsWrap>
+        </section>
+      );
+    
+    
+
+      }
+    
+
