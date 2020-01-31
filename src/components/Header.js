@@ -3,19 +3,18 @@ import { Link, Route } from 'react-router-dom';
 import WelcomePage from './WelcomePage';
 import CharacterList from './CharacterList'
 import LocationList from './LocationsList'
+import EpisodeList from './EpisodeList'
 
 import styled from 'styled-components'
 export default function Header() {
 
-  const CompleteWrap = styled.header `
-  width:100%
-  `
+
   const HeaderWrap = styled.div `
-  border: 3px groove black;
+  border: 3px groove #0CB0C1;
   display: flex;
   width:100%;
   color:#0CB0C1;
-  font-family: get_schwifty;
+  background: black;
 
   a {
    text-decoration:none;
@@ -54,6 +53,7 @@ export default function Header() {
     <Route exact path='/' component={WelcomePage}/>
     <Route path='/characters' component={CharacterList}/>
     <Route path='/location' component={LocationList}/>
+    <Route path='/episode' component={EpisodeList}/>
 </div>
 
   );
