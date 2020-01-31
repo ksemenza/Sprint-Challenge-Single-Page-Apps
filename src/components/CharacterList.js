@@ -39,7 +39,7 @@ export default function CharacterList() {
     //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
     axios.get(`https://rickandmortyapi.com/api/character/`)
     .then(res => {
-      // console.log(res.data.results)
+      console.log(res)
     
       const searchQuery = res.data.results.filter(character => character.name.toLowerCase().includes(searchTerm.toLowerCase()));
       setSearchResults(searchQuery);
@@ -64,7 +64,11 @@ export default function CharacterList() {
     </SearchWrap>
   <CardsWrap>
       {searchResults.map(character => {
+          console.log(character)
         return <CharacterCard character={character} key={character.key} name={character.name} gender={character.gender} image={character.image} species={character.species}/>
+
+      
+
       })}
       </CardsWrap>
     </section>

@@ -32,12 +32,15 @@ export default function EpisodeList() {
 
     const [searchTermEsp, setsearchTermEsp] = useState('');
     const [searchResultsEsp, setsearchResultsEsp] = useState([]);  
+    // const [episodeCharacter, setEpisodeCharacter]
 
     useEffect(() => {
         axios.get(`https://rickandmortyapi.com/api/episode/`)
           .then(res => {
             console.log(res.data.results);
             const searchQuery = res.data.results.filter(episode => episode.name.toLowerCase().includes(searchTermEsp.toLowerCase()));
+            const charcEps = res.data.results.characters;
+            console.log(charcEps)
             setsearchResultsEsp(searchQuery);
           })
           .catch(err => {
