@@ -37,3 +37,8 @@ main {
 header h1 {
   text-align: center;
 }
+
+@font-face {
+  font-family: 'get_schwifty.ttf';
+  src: local('get_schwifty'), url(./fonts/get_schwifty.ttf) format('cursive');
+}
