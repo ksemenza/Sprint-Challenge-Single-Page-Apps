@@ -67,8 +67,6 @@ export default function CharacterList() {
           console.log(character)
         return <CharacterCard character={character} key={character.key} name={character.name} gender={character.gender} image={character.image} species={character.species}/>
 
-      
-
       })}
       </CardsWrap>
     </section>
