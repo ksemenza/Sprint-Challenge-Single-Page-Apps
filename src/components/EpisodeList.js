@@ -1,84 +1,121 @@
 import React, { useEffect, useState } from "react";
-import EpisodeCard from './EpisodeCard';
-import SearchForm from './SearchForm';
-import styled from 'styled-components';
-import axios from 'axios';
+import EpisodeCard from "./EpisodeCard";
+import SearchForm from "./SearchForm";
+import styled from "styled-components";
+import axios from "axios";
 
-const CardsWrap = styled.div `
-display: flex;
-flex-flow: row wrap;
-justify-content: space-between;
-align-items: stretch;
-justify-items: center;
+const CardsWrap = styled.div
 `
-const SearchWrap = styled.div `
-padding:1.5rem;
-display:flex;
-justify-content:center;
-
-input {
-  padding-left:1.5rem;
-  padding-right:1.5rem;
-  padding-top:0.5rem;
-  padding-bottom:0.5rem;
-  text-align: center;
-  border: 1px dashed lime;
-}
-
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  justify-items: center;
+`;
+const SearchWrap = styled.div
 `
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
 
+  input {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    border: 1px dashed lime;
+  }
+`;
+const ButtonCta = styled.div
+`
+  width: 50%;
+  margin 1.5rem auto;
+  font-family: 'Gaegu', cursive;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  button {
+    padding: 0.5rem;
+    margin: 0.25rem;
+    font-family: 'Gaegu', cursive;
+  
+`;
 
 export default function EpisodeList() {
+  const [searchTermEsp, setsearchTermEsp] = useState("");
+  const [searchResultsEsp, setsearchResultsEsp] = useState([]);
+  const [page, setPage] = useState(`page=1`);
 
-    const [searchTermEsp, setsearchTermEsp] = useState('');
-    const [searchResultsEsp, setsearchResultsEsp] = useState([]);  
-    // const [episodeCharacter, setEpisodeCharacter]
+  function getPage(direction) {
+    const numberPattern = /\d+/g;
+    let num = page.match(numberPattern);
+    //console.log(num);
+    direction === "next" ? num++ : num--;
 
-    useEffect(()=> {
-        axios.get(`https://rickandmortyapi.com/api/character/`)
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err => {
-            console.error(err); 
-        })
-    })
+    if (num > 2) {
+      num = 1;
+    }
+    if (num < 1) {
+      num = 2;
+    }
+    //console.log(num);
+    setPage(`page=${num}`);
+  }
 
-    useEffect(() => {
-        axios.get(`https://rickandmortyapi.com/api/episode/`)
-          .then(res => {
-            console.log(res.data.results);
-            const searchQuery = res.data.results.filter(episode => episode.name.toLowerCase().includes(searchTermEsp.toLowerCase()));
-            const charcEps = res.data.results.characters;
-            console.log(charcEps)
-            setsearchResultsEsp(searchQuery);
-          })
-          .catch(err => {
-            console.error('episode data', err); 
-          })
-      
-      }, [searchTermEsp]);
+  useEffect(() => {
+    axios
+      .get(`https://rickandmortyapi.com/api/character/`)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  });
 
-      const handleChange = e => {
-        setsearchTermEsp(e.target.value)
-      }
-    
+  useEffect(() => {
+    axios
+      .get(`https://rickandmortyapi.com/api/episode/?${page}`)
+      .then(res => {
+        const searchQuery = res.data.results.filter(episode =>
+          episode.name.toLowerCase().includes(searchTermEsp.toLowerCase())
+        );
+        setsearchResultsEsp(searchQuery);
+      })
+      .catch(err => {
+        console.error("episode data", err);
+      });
+  }, [searchTermEsp, page]);
 
-      return (
-        <section className="character-list">
-       <SearchWrap>
-    <SearchForm handleChange={handleChange} searchTerm={searchTermEsp}/>
-    </SearchWrap>
-  <CardsWrap>
-      {searchResultsEsp.map(episode => {
-        return <EpisodeCard episode={episode} key={episode.key} name={episode.name} air_date={episode.air_date} episode={episode.episode} created={episode.created} characters={episode.characters}/>
-      })}
+  const handleChange = e => {
+    setsearchTermEsp(e.target.value);
+  };
+
+  return (
+    <section className="character-list">
+      <SearchWrap>
+        <SearchForm handleChange={handleChange} searchTerm={searchTermEsp} />
+      </SearchWrap>
+      <ButtonCta>
+        <button onClick={() => getPage("previous")}>⬅️ Previous Page</button>
+        <button onClick={() => getPage("next")}>Next Page ➡️</button>
+      </ButtonCta>
+      <CardsWrap>
+        {searchResultsEsp.map(episode => {
+          return (
+            <EpisodeCard
+              episode={episode}
+              key={episode.key}
+              name={episode.name}
+              air_date={episode.air_date}
+              episode={episode.episode}
+              created={episode.created}
+              characters={episode.characters}
+            />
+          );
+        })}
       </CardsWrap>
-        </section>
-      );
-    
-    
-
-      }
-    
-
+    </section>
+  );
+}

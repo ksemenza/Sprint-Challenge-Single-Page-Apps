@@ -27,19 +27,50 @@ input {
 
 `
 
+
+const ButtonCta = styled.div
+`
+  width: 50%;
+  margin 1.5rem auto;
+  font-family: 'Gaegu', cursive;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  button {
+    padding: 0.5rem;
+    margin: 0.25rem;
+    font-family: 'Gaegu', cursive;
+  
+`;
+
 export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
 
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [page, setPage] = useState(`page=1`);
+
+  function getPage(direction) {
+    const numberPattern = /\d+/g;
+    let num = page.match(numberPattern);
+    //console.log(num);
+    (direction === "next")? num++ : num--;
   
+    if (num > 25) {
+      num = 1;
+    }
+    if (num < 1) {
+      num = 25;
+  }
+    //console.log(num);
+    setPage(`page=${num}`);  
+  }
 
   useEffect(() => {
     // TODO: Add API Request here - must run in `useEffect`
     //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
-    axios.get(`https://rickandmortyapi.com/api/character/`)
+    axios.get(`https://rickandmortyapi.com/api/character/?${page}`)
     .then(res => {
-      console.log(res)
     
       const searchQuery = res.data.results.filter(character => character.name.toLowerCase().includes(searchTerm.toLowerCase()));
       setSearchResults(searchQuery);
@@ -50,7 +81,7 @@ export default function CharacterList() {
       console.error('charc data', err); 
     })
 
-  }, [searchTerm]);
+  }, [searchTerm, page]);
 
   const handleChange = e => {
     setSearchTerm(e.target.value)
@@ -62,6 +93,10 @@ export default function CharacterList() {
         <SearchWrap>
     <SearchForm handleChange={handleChange} searchTerm={searchTerm}/>
     </SearchWrap>
+    <ButtonCta>
+    <button onClick={() => getPage("previous")}>⬅️ Previous Page</button>
+              <button onClick={() => getPage("next")}>Next Page ➡️</button>
+    </ButtonCta>
   <CardsWrap>
       {searchResults.map(character => {
           console.log(character)
