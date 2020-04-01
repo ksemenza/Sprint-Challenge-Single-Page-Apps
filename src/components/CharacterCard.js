@@ -1,7 +1,8 @@
 import React from "react";
 import styled from 'styled-components'
 
-const CardWrap = styled.div`
+const CardWrap = styled.div
+`
   width: 31%;
   border: 2px solid black;
   border-radius: 4px;
@@ -22,7 +23,8 @@ const CardWrap = styled.div`
 
   }
 `
-const ImgCta = styled.div`
+const ImgCta = styled.div
+`
   margin: 0 auto;
   width: 100%;
   display: flex;

@@ -1,7 +1,8 @@
 import React from "react";
 import styled from 'styled-components';
 
-const CardDiv = styled.div`
+const CardDiv = styled.div
+`
   width: 31%;
   border: 2px solid black;
   border-radius: 4px;

@@ -9,7 +9,8 @@ import styled from 'styled-components'
 export default function Header() {
 
 
-  const HeaderWrap = styled.div `
+  const HeaderWrap = styled.div 
+  `
   border: 3px groove #0CB0C1;
   display: flex;
   width:100%;

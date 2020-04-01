@@ -26,11 +26,10 @@ const SearchWrap = styled.div
     text-align: center;
     border: 1px dashed lime;
   }
-`;
-const ButtonCta = styled.div
 `
-  width: 50%;
-  margin 1.5rem auto;
+const ButtonCta = styled.div
+` width: 50%;
+  margin: 1.5rem auto;
   font-family: 'Gaegu', cursive;
   display: flex;
   flex-flow: row nowrap;
@@ -40,7 +39,7 @@ const ButtonCta = styled.div
     margin: 0.25rem;
     font-family: 'Gaegu', cursive;
   
-`;
+`
 
 export default function EpisodeList() {
   const [searchTermEsp, setsearchTermEsp] = useState("");
