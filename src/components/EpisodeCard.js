@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from 'styled-components';
+import axios from 'axios'
 
 const CardDiv = styled.div
 `
@@ -26,6 +27,37 @@ margin:0 auto;
 `;
 
 export default function LocationCard(episode) {
+
+const [listChar, setListChar] =useState('')
+
+  const charEsp = episode.characters
+  let charList
+  let people
+
+  charEsp.map(chr => {
+    // console.log(chr)
+    charList = chr
+    return charList
+  })
+
+  // console.log(charList)
+
+
+
+  useEffect(() => {
+    axios
+      .get(charList)
+      .then(res => {
+        // console.log(res.data);
+       setListChar=res.data
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  });
+
+console.log(listChar)
+
   return (
     <CardDiv >
       <h2>{episode.name}</h2>
@@ -33,6 +65,8 @@ export default function LocationCard(episode) {
       <h3>Episode: {episode.episode}</h3>
       <h3>Created: {episode.created}</h3>
       <h3>Number of Characters: {episode.characters.length}</h3>
+      {/* <h3>Characters: {episode.characters}</h3> */}
+
     </CardDiv>
   );
 }

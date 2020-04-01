@@ -47,6 +47,7 @@ export default function EpisodeList() {
   const [searchResultsEsp, setsearchResultsEsp] = useState([]);
   const [page, setPage] = useState(`page=1`);
 
+
   function getPage(direction) {
     const numberPattern = /\d+/g;
     let num = page.match(numberPattern);
@@ -63,30 +64,26 @@ export default function EpisodeList() {
     setPage(`page=${num}`);
   }
 
-  useEffect(() => {
-    axios
-      .get(`https://rickandmortyapi.com/api/character/`)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  });
+
 
   useEffect(() => {
     axios
       .get(`https://rickandmortyapi.com/api/episode/?${page}`)
       .then(res => {
+        console.log(res)
         const searchQuery = res.data.results.filter(episode =>
           episode.name.toLowerCase().includes(searchTermEsp.toLowerCase())
         );
         setsearchResultsEsp(searchQuery);
+   
       })
       .catch(err => {
         console.error("episode data", err);
       });
   }, [searchTermEsp, page]);
+  
+
+ 
 
   const handleChange = e => {
     setsearchTermEsp(e.target.value);
@@ -104,7 +101,13 @@ export default function EpisodeList() {
       <CardsWrap>
         {searchResultsEsp.map(episode => {
           return (
-            <EpisodeCard key={episode.key} name={episode.name} air_date={episode.air_date} episode={episode.episode} created={episode.created} characters={episode.characters}/>
+            <EpisodeCard 
+            key={episode.id} 
+            name={episode.name} 
+            air_date={episode.air_date} 
+            episode={episode.episode} 
+            created={episode.created} 
+            characters={episode.characters}/>
           );
         })}
       </CardsWrap>

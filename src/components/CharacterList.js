@@ -104,7 +104,7 @@ export default function CharacterList() {
           console.log(character)
         return <CharacterCard 
         character={character} 
-        key={character.key} 
+        key={character.id} 
         name={character.name} 
         gender={character.gender} 
         species={character.species} 
