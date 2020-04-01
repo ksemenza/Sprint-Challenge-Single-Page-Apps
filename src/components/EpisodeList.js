@@ -38,6 +38,7 @@ const ButtonCta = styled.div
     padding: 0.5rem;
     margin: 0.25rem;
     font-family: 'Gaegu', cursive;
+  }
   
 `
 
