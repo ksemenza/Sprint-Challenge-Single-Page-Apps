@@ -105,11 +105,10 @@ export default function EpisodeList() {
         {searchResultsEsp.map(episode => {
           return (
             <EpisodeCard
-              episode={episode}
+              episode={episoide.episode}
               key={episode.key}
               name={episode.name}
               air_date={episode.air_date}
-        
               created={episode.created}
               characters={episode.characters}
             />
