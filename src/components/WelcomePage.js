@@ -1,7 +1,9 @@
 import React from "react";
+import WelcomeImg from '../welcome-img.jpeg'
 import styled from "styled-components";
 
-const MainWrap = styled.section `
+const MainWrap = styled.section 
+`
 display:flex;
 justify-content:center;
 font-family: 'Architects Daughter', cursive;
@@ -11,10 +13,10 @@ padding-bottom:2.5rem;
 img {
   margin-left:7.5rem;
   margin-top:0.5rem;
+  margin-bottom:-55px;
   width:25rem;
   padding:2.5rem;
-  border: 5px dotted lime;
-
+  border: 5px dotted lime
 }
 `
 
@@ -25,7 +27,7 @@ export default function WelcomePage() {
         <h1>Welcome to the ultimate fan site!</h1>
         <img
           className="main-img"
-          src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+          src={WelcomeImg}
           alt="rick"
         />
       </header>

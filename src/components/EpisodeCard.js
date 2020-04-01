@@ -3,14 +3,15 @@ import styled from 'styled-components';
 
 const CardDiv = styled.div
 `
-  width: 31%;
+margin:0 auto;
+  width: 30%;
   border: 2px solid black;
   border-radius: 4px;
   box-shadow: 3px 5px 3px 3px #888888;
   margin-bottom: 2rem;
   h2 {
     background: #0CB0C1;
-    margin: 0;
+    margin: 5px;
     padding: 1rem;
     text-align: center;
     font-family: 'Architects Daughter', cursive;
