@@ -104,7 +104,7 @@ export default function EpisodeList() {
       <CardsWrap>
         {searchResultsEsp.map(episode => {
           return (
-            <EpisodeCard episode={episode} key={episode.key} name={episode.name} air_date={episode.air_date} episode={episode.episode} created={episode.created} characters={episode.characters}/>
+            <EpisodeCard key={episode.key} name={episode.name} air_date={episode.air_date} episode={episode.episode} created={episode.created} characters={episode.characters}/>
           );
         })}
       </CardsWrap>
