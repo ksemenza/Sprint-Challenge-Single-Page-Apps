@@ -4,14 +4,16 @@ import SearchForm from './SearchForm'
 import axios from 'axios'
 import styled from "styled-components";
 
-const CardsWrap = styled.div `
+const CardsWrap = styled.div 
+`
 display: flex;
 flex-flow: row wrap;
 justify-content: space-between;
 align-items: stretch;
 justify-items: center;
 `
-const SearchWrap = styled.div `
+const SearchWrap = styled.div 
+`
 padding:1.5rem;
 display:flex;
 justify-content:center;
@@ -31,7 +33,7 @@ input {
 const ButtonCta = styled.div
 `
   width: 50%;
-  margin 1.5rem auto;
+  margin: 1.5rem auto;
   font-family: 'Gaegu', cursive;
   display: flex;
   flex-flow: row nowrap;
@@ -40,7 +42,7 @@ const ButtonCta = styled.div
     padding: 0.5rem;
     margin: 0.25rem;
     font-family: 'Gaegu', cursive;
-  
+  }
 `;
 
 export default function CharacterList() {
@@ -94,8 +96,8 @@ export default function CharacterList() {
     <SearchForm handleChange={handleChange} searchTerm={searchTerm}/>
     </SearchWrap>
     <ButtonCta>
-    <button onClick={() => getPage("previous")}>⬅️ Previous Page</button>
-              <button onClick={() => getPage("next")}>Next Page ➡️</button>
+    <button onClick={() => getPage("previous")}> Previous Page</button>
+              <button onClick={() => getPage("next")}>Next Page </button>
     </ButtonCta>
   <CardsWrap>
       {searchResults.map(character => {

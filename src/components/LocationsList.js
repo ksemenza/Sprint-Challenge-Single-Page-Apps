@@ -31,7 +31,7 @@ const SearchWrap = styled.div
 const ButtonCta = styled.div
 `
   width: 50%;
-  margin 1.5rem auto;
+  margin: 1.5rem auto;
   font-family:'Gaegu', cursive;
   display: flex;
   flex-flow: row nowrap;
@@ -41,7 +41,8 @@ const ButtonCta = styled.div
     margin: 0.25rem;
     font-family: 'Gaegu', cursive;
   
-`;
+  }
+    `
 
 export default function LocationsList() {
   const [searchTermLoc, setSearchTermLoc] = useState("");
@@ -91,8 +92,8 @@ function getPage(direction) {
       </SearchWrap>
 
       <ButtonCta>
-        <button onClick={() => getPage("previous")}>⬅️ Previous Page</button>
-        <button onClick={() => getPage("next")}>Next Page ➡️</button>
+        <button onClick={() => getPage("previous")}> Previous Page</button>
+        <button onClick={() => getPage("next")}>Next Page </button>
       </ButtonCta>
 
       <CardsWrap>

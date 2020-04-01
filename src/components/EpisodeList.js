@@ -97,8 +97,8 @@ export default function EpisodeList() {
         <SearchForm handleChange={handleChange} searchTerm={searchTermEsp} />
       </SearchWrap>
       <ButtonCta>
-        <button onClick={() => getPage("previous")}>⬅️ Previous Page</button>
-        <button onClick={() => getPage("next")}>Next Page ➡️</button>
+        <button onClick={() => getPage("previous")}> Previous Page</button>
+        <button onClick={() => getPage("next")}>Next Page </button>
       </ButtonCta>
       <CardsWrap>
         {searchResultsEsp.map(episode => {
@@ -108,7 +108,7 @@ export default function EpisodeList() {
               key={episode.key}
               name={episode.name}
               air_date={episode.air_date}
-              episode={episode.episode}
+        
               created={episode.created}
               characters={episode.characters}
             />
